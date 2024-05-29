@@ -23,23 +23,25 @@ function loadFileList() {
 
     for (let i = 0; i < localStorage.length; i++) {
         const fileName = localStorage.key(i);
+        const content = localStorage.getItem(fileName);
+        const downloadLink = createDownloadLink(fileName, content);
+        
         const listItem = document.createElement('div');
         listItem.innerHTML = `
-            ${fileName} <button onclick="downloadFile('${fileName}')">Download</button>
+            ${fileName} 
+            ${downloadLink.outerHTML}
             <button onclick="deleteFile('${fileName}')">Delete</button>
         `;
         fileList.appendChild(listItem);
     }
 }
 
-function downloadFile(fileName) {
-    const content = localStorage.getItem(fileName);
+function createDownloadLink(fileName, content) {
     const link = document.createElement('a');
     link.href = content;
     link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    link.innerText = 'Download';
+    return link;
 }
 
 function deleteFile(fileName) {
