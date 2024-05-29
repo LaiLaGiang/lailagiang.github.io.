@@ -1,0 +1,20 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+h1 {
+    color: #333;
+}
+
+#fileInput {
+    margin: 20px 0;
+}
+
+#fileList {
+    margin-top: 20px;
+    width: 300px;
+}
