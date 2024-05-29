@@ -30,7 +30,7 @@ function loadFileList() {
         listItem.innerHTML = `
             ${fileName} 
             ${downloadLink.outerHTML}
-            <button onclick="deleteFile('${fileName}')">Delete</button>
+            <button onclick="initiateUpdate('${fileName}')">Update</button>
         `;
         fileList.appendChild(listItem);
     }
@@ -44,7 +44,28 @@ function createDownloadLink(fileName, content) {
     return link;
 }
 
-function deleteFile(fileName) {
-    localStorage.removeItem(fileName);
-    loadFileList();
+function initiateUpdate(fileName) {
+    const fileInput = document.getElementById('fileInput');
+    fileInput.setAttribute('data-update-file', fileName);
+    fileInput.addEventListener('change', updateFile);
+    fileInput.click();
+}
+
+function updateFile(event) {
+    const fileInput = event.target;
+    const file = fileInput.files[0];
+    const fileName = fileInput.getAttribute('data-update-file');
+
+    if (file && fileName) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const content = e.target.result;
+            localStorage.setItem(fileName, content);
+            loadFileList();
+        };
+        reader.readAsDataURL(file);
+    }
+
+    fileInput.removeAttribute('data-update-file');
+    fileInput.removeEventListener('change', updateFile);
 }
