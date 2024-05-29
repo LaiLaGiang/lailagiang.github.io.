@@ -5,7 +5,11 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    if (username === 'user' && password === 'password') {
+    // Hard-coded admin credentials for demonstration purposes
+    const adminUsername = 'admin';
+    const adminPassword = 'admin123';
+
+    if (username === adminUsername && password === adminPassword) {
         document.getElementById('login-container').style.display = 'none';
         document.getElementById('upload-container').style.display = 'block';
     } else {
