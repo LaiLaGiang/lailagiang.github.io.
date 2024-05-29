@@ -1,71 +1,29 @@
-document.addEventListener('DOMContentLoaded', () => {
-    loadFileList();
+document.getElementById('login-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Simple client-side validation
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    if (username === 'user' && password === 'password') {
+        document.getElementById('login-container').style.display = 'none';
+        document.getElementById('upload-container').style.display = 'block';
+    } else {
+        alert('Incorrect username or password.');
+    }
 });
 
-function uploadFile() {
-    const fileInput = document.getElementById('fileInput');
+document.getElementById('upload-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const fileInput = document.getElementById('file-upload');
     const file = fileInput.files[0];
-    
+
     if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const content = e.target.result;
-            localStorage.setItem(file.name, content);
-            loadFileList();
-        };
-        reader.readAsDataURL(file);
+        const downloadLink = document.getElementById('download-link');
+        downloadLink.href = URL.createObjectURL(file);
+        downloadLink.download = file.name;
+
+        document.getElementById('file-link').style.display = 'block';
     }
-}
-
-function loadFileList() {
-    const fileList = document.getElementById('fileList');
-    fileList.innerHTML = '';
-
-    for (let i = 0; i < localStorage.length; i++) {
-        const fileName = localStorage.key(i);
-        const content = localStorage.getItem(fileName);
-        const downloadLink = createDownloadLink(fileName, content);
-        
-        const listItem = document.createElement('div');
-        listItem.innerHTML = `
-            ${fileName} 
-            ${downloadLink.outerHTML}
-            <button onclick="initiateUpdate('${fileName}')">Update</button>
-        `;
-        fileList.appendChild(listItem);
-    }
-}
-
-function createDownloadLink(fileName, content) {
-    const link = document.createElement('a');
-    link.href = content;
-    link.download = fileName;
-    link.innerText = 'Download';
-    return link;
-}
-
-function initiateUpdate(fileName) {
-    const fileInput = document.getElementById('fileInput');
-    fileInput.setAttribute('data-update-file', fileName);
-    fileInput.addEventListener('change', updateFile);
-    fileInput.click();
-}
-
-function updateFile(event) {
-    const fileInput = event.target;
-    const file = fileInput.files[0];
-    const fileName = fileInput.getAttribute('data-update-file');
-
-    if (file && fileName) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const content = e.target.result;
-            localStorage.setItem(fileName, content);
-            loadFileList();
-        };
-        reader.readAsDataURL(file);
-    }
-
-    fileInput.removeAttribute('data-update-file');
-    fileInput.removeEventListener('change', updateFile);
-}
+});
