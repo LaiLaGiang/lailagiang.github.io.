@@ -21,5 +21,21 @@
             <button type="submit">Dang nhap</button>
         </form>
     </div>
+
+    <div id="upload-container" class="container" style="display: none;">
+        <h2>Upload File</h2>
+        <form id="upload-form">
+            <div class="input-group">
+                <label for="file-upload">Choose file to upload</label>
+                <input type="file" id="file-upload" name="file-upload" required>
+            </div>
+            <button type="submit">Upload</button>
+        </form>
+        <div id="file-link" style="display: none;">
+            <p>File uploaded successfully. <a id="download-link" href="#">Download file</a></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
