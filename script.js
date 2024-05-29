@@ -6,8 +6,8 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     const password = document.getElementById('password').value;
 
     // Hard-coded admin credentials for demonstration purposes
-    const adminUsername = 'admin';
-    const adminPassword = 'admin123';
+    const adminUsername = 'giang03';
+    const adminPassword = 'giang';
 
     if (username === adminUsername && password === adminPassword) {
         document.getElementById('login-container').style.display = 'none';
