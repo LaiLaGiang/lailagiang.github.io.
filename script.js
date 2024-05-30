@@ -1,16 +1,29 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('login-form');
-    loginForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Ngăn chặn gửi form mặc định
+document.getElementById('login-form').addEventListener('submit', function(event) {
+    event.preventDefault();
 
-        // Kiểm tra tên đăng nhập và mật khẩu
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-        if (username === 'admin123' && password === 'admin123') {
-            // Nếu đúng, chuyển hướng đến trang upload file
-            window.location.href = 'upload.html'; // Thay 'upload.html' bằng đường dẫn đến trang upload file của bạn
-        } else {
-            alert('Tên đăng nhập hoặc mật khẩu không chính xác');
-        }
-    });
+    // Simple client-side validation
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    if (username === 'user' && password === 'password') {
+        document.getElementById('login-container').style.display = 'none';
+        document.getElementById('upload-container').style.display = 'block';
+    } else {
+        alert('Incorrect username or password.');
+    }
+});
+
+document.getElementById('upload-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const fileInput = document.getElementById('file-upload');
+    const file = fileInput.files[0];
+
+    if (file) {
+        const downloadLink = document.getElementById('download-link');
+        downloadLink.href = URL.createObjectURL(file);
+        downloadLink.download = file.name;
+
+        document.getElementById('file-link').style.display = 'block';
+    }
 });
