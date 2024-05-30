@@ -3,30 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-      body {
-        background-image: url("https://raw.githubusercontent.com/LaiLaGiang/lailagiang.github.io./main/backgroud.jpg");
-      }
-    </style>
+    <title>Glassmorphism Login Form</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="login-container" class="container">
-        <h2 style="color: blue;">LaiLaGiang By 4Lua</h2>
-        <form id="login-form">
-            <div class="input-group">
-                <label for="username">Tai Khoan</label>
-                <input type="text" id="username" name="username" required>
+    <section>
+        <div class="form-box">
+            <div class="form-value">
+                <form action="">
+                    <h2>Login</h2>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" required>
+                        <label>Password</label>
+                    </div>
+                    <div class="forget">
+                        <label><input type="checkbox"> Remember me</label>
+                        <label><a href="#">Forgot password?</a></label>
+                    </div>
+                    <button>Log in</button>
+                    <div class="register">
+                        <p>Don't have an account? <a href="#">Register</a></p>
+                    </div>
+                </form>
             </div>
-            <div class="input-group">
-                <label for="password">Mat Khau</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Dang nhap</button>
-        </form>
-    </div>
-
-    <script src="script.js"></script>
+        </div>
+    </section>
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
